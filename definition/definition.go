@@ -4,18 +4,22 @@
 
 package definition
 
-import "strings"
-
 // Definition ...
 type Definition map[string]interface{}
 
-// Env : returns the environment name
-func (d *Definition) Env() string {
+// Env : definition env
+func (d *Definition) Name() string {
 	name, _ := (*d)["name"].(string)
 	return name
 }
 
-// Project : returns the project name
+// Project : definition project
 func (d *Definition) Project() string {
-	return strings.Split(d.Env(), "/")[0]
+	project, _ := (*d)["project"].(string)
+	return project
+}
+
+// FullName : full env name (project + env)
+func (d *Definition) FullName() string {
+	return d.Project() + "/" + d.Name()
 }

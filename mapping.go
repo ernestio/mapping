@@ -23,11 +23,11 @@ type Mapping struct {
 }
 
 // New : create a new mapping
-func New(c akira.Connector, env string) (*Mapping, error) {
+func New(c akira.Connector, env string) *Mapping {
 	return &Mapping{
 		Environment: env,
 		conn:        c,
-	}, nil
+	}
 }
 
 // Diff : gets a mapping for a diff between two environment builds
@@ -53,7 +53,7 @@ func (m *Mapping) Import(filters []string) error {
 }
 
 // Apply : apply a definition
-func (m *Mapping) Apply(d definition.Definition) error {
+func (m *Mapping) Apply(d *definition.Definition) error {
 	var env environment.Environment
 	var builds []build.Build
 
@@ -115,7 +115,7 @@ func (m *Mapping) Delete() error {
 }
 
 // Create : gets a mapping for creating an environment
-func (m *Mapping) create(d definition.Definition) error {
+func (m *Mapping) create(d *definition.Definition) error {
 	credentials, err := GetCredentials(m.conn, m.Environment)
 	if err != nil {
 		return err
@@ -124,7 +124,7 @@ func (m *Mapping) create(d definition.Definition) error {
 	r := Request{
 		ID:          uuid.NewV4().String(),
 		Name:        m.Environment,
-		Definition:  d,
+		Definition:  *d,
 		Credentials: credentials,
 	}
 
@@ -132,7 +132,7 @@ func (m *Mapping) create(d definition.Definition) error {
 }
 
 // Update : gets a mapping for updating an existing environment
-func (m *Mapping) update(d definition.Definition, build string) error {
+func (m *Mapping) update(d *definition.Definition, build string) error {
 	var mapping map[string]interface{}
 
 	credentials, err := GetCredentials(m.conn, m.Environment)
@@ -149,7 +149,7 @@ func (m *Mapping) update(d definition.Definition, build string) error {
 		ID:          uuid.NewV4().String(),
 		Name:        m.Environment,
 		From:        mapping,
-		Definition:  d,
+		Definition:  *d,
 		Credentials: credentials,
 	}
 
