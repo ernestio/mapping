@@ -28,6 +28,9 @@ func GetCredentials(c akira.Connector, env string) (map[string]interface{}, erro
 		return nil, err
 	}
 
+	p.Credentials["name"] = e.Name
+	p.Credentials["type"] = e.Type
+
 	p.Override(e.Credentials)
 
 	return p.Credentials, nil

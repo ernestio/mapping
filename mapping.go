@@ -49,7 +49,7 @@ func (m *Mapping) Import(filters []string) error {
 		Credentials: credentials,
 	}
 
-	return query.New(m.conn, "definition.map.import").Request(&r).Run(&m.Result)
+	return query.New(m.conn, "mapping.get.import").Request(&r).Run(&m.Result)
 }
 
 // Apply : apply a definition
@@ -111,7 +111,7 @@ func (m *Mapping) Delete() error {
 		Credentials: credentials,
 	}
 
-	return query.New(m.conn, "definition.map.deletion").Request(&r).Run(&m.Result)
+	return query.New(m.conn, "mapping.get.delete").Request(&r).Run(&m.Result)
 }
 
 // Create : gets a mapping for creating an environment
@@ -128,7 +128,7 @@ func (m *Mapping) create(d definition.Definition) error {
 		Credentials: credentials,
 	}
 
-	return query.New(m.conn, "definition.map.creation").Request(&r).Run(&m.Result)
+	return query.New(m.conn, "mapping.get.create").Request(&r).Run(&m.Result)
 }
 
 // Update : gets a mapping for updating an existing environment
@@ -153,5 +153,5 @@ func (m *Mapping) update(d definition.Definition, build string) error {
 		Credentials: credentials,
 	}
 
-	return query.New(m.conn, "definition.map.creation").Request(&r).Run(&m.Result)
+	return query.New(m.conn, "mapping.get.update").Request(&r).Run(&m.Result)
 }
