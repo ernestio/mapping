@@ -62,7 +62,7 @@ func (m *Mapping) Apply(d *definition.Definition) error {
 		return err
 	}
 
-	err = query.New(m.conn, "builds.find").Filter("environment_id", env.ID).Run(&builds)
+	err = query.New(m.conn, "build.find").Filter("environment_id", env.ID).Run(&builds)
 	if err != nil {
 		return err
 	}
@@ -85,7 +85,7 @@ func (m *Mapping) Delete() error {
 		return err
 	}
 
-	err = query.New(m.conn, "builds.find").Filter("environment_id", env.ID).Run(&builds)
+	err = query.New(m.conn, "build.find").Filter("environment_id", env.ID).Run(&builds)
 	if err != nil {
 		return err
 	}

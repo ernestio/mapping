@@ -6,7 +6,7 @@ package project
 
 // Project ...
 type Project struct {
-	ID          uint                   `json:"id"`
+	ID          int                    `json:"id"`
 	Name        string                 `json:"name"`
 	Type        string                 `json:"type"`
 	Credentials map[string]interface{} `json:"credentials"`

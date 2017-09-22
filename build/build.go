@@ -6,10 +6,11 @@ package build
 
 // Build ...
 type Build struct {
-	ID            uint                   `json:"-" gorm:"primary_key"`
+	ID            int                    `json:"-" gorm:"primary_key"`
 	UUID          string                 `json:"id"`
-	EnvironmentID uint                   `json:"environment_id"`
-	UserID        uint                   `json:"user_id"`
+	EnvironmentID int                    `json:"environment_id"`
+	UserID        int                    `json:"user_id"`
+	Username      string                 `json:"user_name"`
 	Type          string                 `json:"type"`
 	Status        string                 `json:"status"`
 	Definition    string                 `json:"definition" gorm:"type:text;"`
