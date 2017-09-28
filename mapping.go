@@ -67,7 +67,7 @@ func (m *Mapping) Apply(d *definition.Definition) error {
 		return err
 	}
 
-	if len(builds) > 1 {
+	if len(builds) > 0 {
 		return m.update(d, builds[0].UUID)
 	}
 
