@@ -32,7 +32,32 @@ func New(c akira.Connector, env string) *Mapping {
 
 // Diff : gets a mapping for a diff between two environment builds
 func (m *Mapping) Diff(a, b string) error {
-	return nil
+	var ag, bg map[string]interface{}
+
+	credentials, err := GetCredentials(m.conn, m.Environment)
+	if err != nil {
+		return err
+	}
+
+	err = query.New(m.conn, "build.get.mapping").ID(a).Run(&ag)
+	if err != nil {
+		return err
+	}
+
+	err = query.New(m.conn, "build.get.mapping").ID(b).Run(&bg)
+	if err != nil {
+		return err
+	}
+
+	r := Request{
+		ID:          uuid.NewV4().String(),
+		Name:        m.Environment,
+		From:        ag,
+		To:          bg,
+		Credentials: credentials,
+	}
+
+	return query.New(m.conn, "mapping.get.diff").Request(&r).Run(&m.Result)
 }
 
 // Import : gets a mapping for import
