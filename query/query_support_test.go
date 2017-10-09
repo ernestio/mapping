@@ -40,7 +40,7 @@ func testGetHandler(m *nats.Msg) {
 
 	for _, td := range testData {
 		if q["id"] != nil {
-			if td.ID == uint(q["id"].(float64)) {
+			if td.ID == int(q["id"].(float64)) {
 				data, _ := json.Marshal(td)
 				fc.Publish(m.Reply, data)
 				return
@@ -54,7 +54,7 @@ func testSetHandler(m *nats.Msg) {
 	json.Unmarshal(m.Data, &e)
 
 	if e.ID == 0 {
-		e.ID = uint(len(testData)) + 1
+		e.ID = int(len(testData)) + 1
 		data, _ := json.Marshal(e)
 		fc.Publish(m.Reply, data)
 		return

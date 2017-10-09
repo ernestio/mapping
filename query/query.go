@@ -61,8 +61,9 @@ func (q *Query) query() error {
 		return nil
 	}
 
-	if isError(resp.Data, ErrNotFound) {
-		return ErrNotFound
+	err = validate(resp.Data)
+	if err != nil {
+		return err
 	}
 
 	return json.Unmarshal(resp.Data, q.result)

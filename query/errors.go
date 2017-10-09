@@ -5,13 +5,23 @@
 package query
 
 import (
+	"encoding/json"
 	"errors"
-	"strings"
 )
 
 // ErrNotFound : could not find a resource
 var ErrNotFound = errors.New("not found")
 
-func isError(data []byte, err error) bool {
-	return strings.Contains(string(data), err.Error())
+// Error ...
+type Error struct {
+	Message string `json:"_error"`
+}
+
+func validate(data []byte) error {
+	var e Error
+	_ = json.Unmarshal(data, &e)
+	if e.Message != "" {
+		return errors.New(e.Message)
+	}
+	return nil
 }
