@@ -8,6 +8,8 @@ package mapping
 type Request struct {
 	ID          string                 `json:"id,omitempty"`
 	Name        string                 `json:"name,omitempty"`
+	UserID      int                    `json:"user_id"`
+	Username    string                 `json:"username"`
 	Filters     []string               `json:"filters,omitempty"`
 	Definition  map[string]interface{} `json:"definition,omitempty"`
 	From        map[string]interface{} `json:"from,omitempty"`
