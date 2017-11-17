@@ -12,7 +12,7 @@ import (
 // ErrNotFound : could not find a resource
 var ErrNotFound = errors.New("not found")
 
-// Error ...
+// Error : Error json structure
 type Error struct {
 	Message string `json:"_error"`
 }

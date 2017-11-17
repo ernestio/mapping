@@ -32,12 +32,8 @@ func New(c akira.Connector, env string) *Mapping {
 
 // Diff : gets a mapping for a diff between two environment builds
 func (m *Mapping) Diff(a, b string) error {
+	var err error
 	var ag, bg map[string]interface{}
-
-	credentials, err := GetCredentials(m.conn, m.Environment)
-	if err != nil {
-		return err
-	}
 
 	err = query.New(m.conn, "build.get.mapping").ID(a).Run(&ag)
 	if err != nil {
@@ -49,6 +45,16 @@ func (m *Mapping) Diff(a, b string) error {
 		return err
 	}
 
+	return m.DiffGraphs(ag, bg)
+}
+
+// DiffGraphs : gets a mpping for a diff between two graphs
+func (m *Mapping) DiffGraphs(ag, bg map[string]interface{}) error {
+	var err error
+	credentials, err := GetCredentials(m.conn, m.Environment)
+	if err != nil {
+		return err
+	}
 	r := Request{
 		ID:          uuid.NewV4().String(),
 		Name:        m.Environment,

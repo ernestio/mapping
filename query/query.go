@@ -11,7 +11,7 @@ import (
 	"github.com/r3labs/akira"
 )
 
-// Query ...
+// Query : Allows data-stor equeries
 type Query struct {
 	Connection akira.Connector
 	subject    string

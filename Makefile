@@ -15,6 +15,7 @@ test:
 deps:
 	go get github.com/satori/uuid
 	go get -u github.com/ernestio/ernest-config-client
+	go get github.com/stretchr/testify/assert
 
 dev-deps: deps
 	go get github.com/alecthomas/gometalinter
