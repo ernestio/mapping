@@ -11,6 +11,7 @@ type Environment struct {
 	Type        string                 `json:"type"`
 	Status      string                 `json:"status"`
 	Options     map[string]interface{} `json:"options"`
+	Schedules   map[string]interface{} `json:"schedules"`
 	Credentials map[string]interface{} `json:"credentials"`
 }
 
