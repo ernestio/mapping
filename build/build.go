@@ -8,6 +8,7 @@ package build
 type Build struct {
 	ID            int                    `json:"-" gorm:"primary_key"`
 	UUID          string                 `json:"id"`
+	Name          string                 `json:"name"`
 	EnvironmentID int                    `json:"environment_id"`
 	UserID        int                    `json:"user_id"`
 	Username      string                 `json:"user_name"`
