@@ -18,16 +18,9 @@ jobs:
      steps:
        - checkout
        - run:
-           name: Setup Hosts File
-           command: echo 127.0.0.1 ernest.local | sudo tee -a /etc/hosts
-       - run:
            name: Install Dependencies
            command: |
              make dev-deps
-             docker run --name nats -d -p 4222:4222 nats:1.0.2
-             docker run --name postgres -d -p 5432:5432 postgres:9.6.5-alpine
-             sudo apt update && sudo apt install postgresql-client
-             echo "CREATE DATABASE environments;" | psql -U postgres -h 127.0.0.1
        - run:
            name: Install Service
            command: make install
