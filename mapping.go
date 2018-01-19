@@ -18,6 +18,7 @@ import (
 // Mapping : stores a environments build mapping
 type Mapping struct {
 	Environment string
+	Changelog   bool
 	Result      map[string]interface{}
 	conn        akira.Connector
 }
@@ -157,6 +158,7 @@ func (m *Mapping) create(d *definition.Definition) error {
 		Name:        m.Environment,
 		Definition:  *d,
 		Credentials: credentials,
+		Changelog:   m.Changelog,
 	}
 
 	return query.New(m.conn, "mapping.get.create").Request(&r).Run(&m.Result)
@@ -182,6 +184,7 @@ func (m *Mapping) update(d *definition.Definition, build string) error {
 		From:        mapping,
 		Definition:  *d,
 		Credentials: credentials,
+		Changelog:   m.Changelog,
 	}
 
 	return query.New(m.conn, "mapping.get.update").Request(&r).Run(&m.Result)
