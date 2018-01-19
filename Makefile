@@ -13,9 +13,8 @@ test:
 	unconvert ./...
 
 deps:
-	go get github.com/satori/uuid
-	go get -u github.com/ernestio/ernest-config-client
-	go get github.com/stretchr/testify/assert
+	go get -u github.com/golang/dep/cmd/dep
+	dep ensure
 
 dev-deps: deps
 	go get github.com/alecthomas/gometalinter

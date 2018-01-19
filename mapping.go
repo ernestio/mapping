@@ -55,10 +55,8 @@ func (m *Mapping) DiffGraphs(ag, bg map[string]interface{}) error {
 	if err != nil {
 		return err
 	}
-	id, _ := uuid.NewV4()
-
 	r := Request{
-		ID:          id.String(),
+		ID:          uuid.NewV4().String(),
 		Name:        m.Environment,
 		From:        ag,
 		To:          bg,
@@ -75,10 +73,8 @@ func (m *Mapping) Import(filters []string) error {
 		return err
 	}
 
-	id, _ := uuid.NewV4()
-
 	r := Request{
-		ID:          id.String(),
+		ID:          uuid.NewV4().String(),
 		Name:        m.Environment,
 		Filters:     filters,
 		Credentials: credentials,
@@ -139,10 +135,8 @@ func (m *Mapping) Delete() error {
 		return err
 	}
 
-	id, _ := uuid.NewV4()
-
 	r := Request{
-		ID:          id.String(),
+		ID:          uuid.NewV4().String(),
 		Name:        m.Environment,
 		From:        mapping,
 		Credentials: credentials,
@@ -158,10 +152,8 @@ func (m *Mapping) create(d *definition.Definition) error {
 		return err
 	}
 
-	id, _ := uuid.NewV4()
-
 	r := Request{
-		ID:          id.String(),
+		ID:          uuid.NewV4().String(),
 		Name:        m.Environment,
 		Definition:  *d,
 		Credentials: credentials,
@@ -184,10 +176,8 @@ func (m *Mapping) update(d *definition.Definition, build string) error {
 		return err
 	}
 
-	id, _ := uuid.NewV4()
-
 	r := Request{
-		ID:          id.String(),
+		ID:          uuid.NewV4().String(),
 		Name:        m.Environment,
 		From:        mapping,
 		Definition:  *d,
