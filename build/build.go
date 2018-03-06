@@ -4,6 +4,8 @@
 
 package build
 
+import "github.com/ernestio/mapping/validation"
+
 // Build ...
 type Build struct {
 	ID            int                    `json:"-" gorm:"primary_key"`
@@ -16,4 +18,5 @@ type Build struct {
 	Status        string                 `json:"status"`
 	Definition    string                 `json:"definition" gorm:"type:text;"`
 	Mapping       map[string]interface{} `json:"mapping"`
+	Validation    validation.Validation  `json:"validation"`
 }

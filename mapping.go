@@ -10,7 +10,9 @@ import (
 	"github.com/ernestio/mapping/build"
 	"github.com/ernestio/mapping/definition"
 	"github.com/ernestio/mapping/environment"
+	"github.com/ernestio/mapping/policy"
 	"github.com/ernestio/mapping/query"
+	"github.com/ernestio/mapping/validation"
 	"github.com/r3labs/akira"
 	"github.com/satori/uuid"
 )
@@ -20,6 +22,7 @@ type Mapping struct {
 	Environment string
 	Changelog   bool
 	Result      map[string]interface{}
+	Validation  validation.Validation
 	conn        akira.Connector
 }
 
@@ -29,6 +32,29 @@ func New(c akira.Connector, env string) *Mapping {
 		Environment: env,
 		conn:        c,
 	}
+}
+
+// Validate : validate a build mapping against an environments policy documents
+func (m *Mapping) Validate() error {
+	var policies []policy.Policy
+
+	q := map[string][]string{"environments": []string{m.Environment}}
+
+	err := query.New(m.conn, "policy.find").Request(q).Run(&policies)
+	if err != nil {
+		return err
+	}
+
+	if len(policies) < 1 {
+		return nil
+	}
+
+	bv := validation.BuildValidation{
+		Mapping:  m.Result,
+		Policies: policies,
+	}
+
+	return query.New(m.conn, "build.validate").Request(bv).Run(&m.Validation)
 }
 
 // Diff : gets a mapping for a diff between two environment builds
