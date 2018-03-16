@@ -7,8 +7,8 @@ package validation
 import "github.com/ernestio/mapping/policy"
 
 type BuildValidation struct {
-	Mapping  map[string]interface{} `json:"mapping"`
-	Policies []policy.Policy        `json:"policies"`
+	Mapping  map[string]interface{}  `json:"mapping"`
+	Policies []policy.PolicyDocument `json:"policies"`
 }
 
 // Validation describes a response from the build validate service.

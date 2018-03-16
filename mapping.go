@@ -37,6 +37,7 @@ func New(c akira.Connector, env string) *Mapping {
 // Validate : validate a build mapping against an environments policy documents
 func (m *Mapping) Validate() error {
 	var policies []policy.Policy
+	var documents []policy.PolicyDocument
 
 	q := map[string][]string{"environments": []string{m.Environment}}
 
@@ -49,9 +50,26 @@ func (m *Mapping) Validate() error {
 		return nil
 	}
 
+	for _, p := range policies {
+		var pd []policy.PolicyDocument
+
+		pq := map[string]int{"policy_id": p.ID}
+
+		err := query.New(m.conn, "policy_document.find").Request(pq).Run(&pd)
+		if err != nil {
+			return err
+		}
+
+		if len(pd) < 1 {
+			continue
+		}
+
+		documents = append(documents, pd[0])
+	}
+
 	bv := validation.BuildValidation{
 		Mapping:  m.Result,
-		Policies: policies,
+		Policies: documents,
 	}
 
 	return query.New(m.conn, "build.validate").Request(bv).Run(&m.Validation)

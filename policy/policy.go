@@ -8,6 +8,16 @@ package policy
 type Policy struct {
 	ID           int      `json:"id"`
 	Name         string   `json:"name"`
-	Definition   string   `json:"definition"`
+	Revisions    []string `json:"revisions"`
 	Environments []string `json:"environments"`
+}
+
+// PolicyDocument : stores the policy revision document
+type PolicyDocument struct {
+	ID         int    `json:"id"`
+	PolicyID   int    `json:"policy_id"`
+	UserID     int    `json:"user_id"`
+	Revision   int    `json:"revision"`
+	Definition string `json:"definition"`
+	CreatedAt  string `json:"created_at"`
 }
