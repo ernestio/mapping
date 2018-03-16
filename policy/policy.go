@@ -16,8 +16,8 @@ type Policy struct {
 type PolicyDocument struct {
 	ID         int    `json:"id"`
 	PolicyID   int    `json:"policy_id"`
-	UserID     int    `json:"user_id"`
 	Revision   int    `json:"revision"`
+	Username   string `json:"username"`
 	Definition string `json:"definition"`
 	CreatedAt  string `json:"created_at"`
 }
