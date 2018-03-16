@@ -8,7 +8,7 @@ package policy
 type Policy struct {
 	ID           int      `json:"id"`
 	Name         string   `json:"name"`
-	Revisions    []string `json:"revisions"`
+	Revisions    []int    `json:"revisions"`
 	Environments []string `json:"environments"`
 }
 
