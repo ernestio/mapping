@@ -13,6 +13,7 @@ type Environment struct {
 	Options     map[string]interface{} `json:"options"`
 	Schedules   map[string]interface{} `json:"schedules"`
 	Credentials map[string]interface{} `json:"credentials"`
+	Builds      []string               `json:"builds,omitempty"`
 }
 
 // Ready : returns true if the environment is not busy
