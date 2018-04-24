@@ -4,6 +4,8 @@
 
 package environment
 
+import "github.com/ernestio/mapping/build"
+
 // Environment ...
 type Environment struct {
 	ID          int                    `json:"id"`
@@ -13,7 +15,7 @@ type Environment struct {
 	Options     map[string]interface{} `json:"options"`
 	Schedules   map[string]interface{} `json:"schedules"`
 	Credentials map[string]interface{} `json:"credentials"`
-	Builds      []string               `json:"builds,omitempty"`
+	Builds      []build.Build          `json:"builds,omitempty"`
 }
 
 // Ready : returns true if the environment is not busy
