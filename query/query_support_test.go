@@ -8,7 +8,7 @@ import (
 	"encoding/json"
 
 	"github.com/ernestio/mapping/environment"
-	"github.com/nats-io/nats"
+	"github.com/nats-io/go-nats"
 )
 
 var testData = []environment.Environment{

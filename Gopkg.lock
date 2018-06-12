@@ -10,15 +10,10 @@
 [[projects]]
   name = "github.com/nats-io/go-nats"
   packages = [
+    ".",
     "encoders/builtin",
     "util"
   ]
-  revision = "d66cb54e6b7bdd93f0b28afc8450d84c780dfb68"
-  version = "v1.4.0"
-
-[[projects]]
-  name = "github.com/nats-io/nats"
-  packages = ["."]
   revision = "d66cb54e6b7bdd93f0b28afc8450d84c780dfb68"
   version = "v1.4.0"
 
@@ -38,13 +33,13 @@
   branch = "master"
   name = "github.com/r3labs/akira"
   packages = ["."]
-  revision = "a3fae57dfd96d0ff20e64aa618f09a73ffea6ec4"
+  revision = "8754167cb7b314671eb1e2abf2e9465f2e3d5ad4"
 
 [[projects]]
   name = "github.com/satori/uuid"
   packages = ["."]
-  revision = "879c5887cd475cd7864858769793b2ceb0d44feb"
-  version = "v1.1.0"
+  revision = "f58768cc1a7a7e77a3bd49e98cdd21419399b6a3"
+  version = "v1.2.0"
 
 [[projects]]
   name = "github.com/stretchr/testify"
@@ -55,6 +50,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "7bbe421807be1d5bd0f24ae942de572f9c92ffebdcc364e6829a277fffd024ba"
+  inputs-digest = "b896fa47b6833ad5858782dbbec8b6bcd27a651b54d171d863eb0f269ead87b4"
   solver-name = "gps-cdcl"
   solver-version = 1
